@@ -60,7 +60,7 @@ public class CurrencyOpsController {
 
         if (Objects.requireNonNull(cacheManager.getCache(BASE_CACHE)).retrieve(from) != null && Objects.nonNull(to)) {
             Currency resultFromCache = cacheManager.getCache(BASE_CACHE).get(from, Currency.class);
-            return new Currency(from, Map.of(to, resultFromCache.quotes().getOrDefault(from, Double.NaN)));
+            return new Currency(from, Map.of(to, resultFromCache.quotes().getOrDefault(to, Double.NaN)));
         } else {
             Currency fromSourse = requestService.requestCurrencyFromSourse(from);
             return new Currency(fromSourse.sourceCurrency(), Map.of(to, fromSourse.quotes().getOrDefault(to, Double.NaN)));

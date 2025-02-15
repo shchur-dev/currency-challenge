@@ -2,7 +2,7 @@ package org.test.project.services;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.test.project.config.RestClientProvider;
+import org.springframework.web.client.RestClient;
 import org.test.project.pojo.Currency;
 import org.test.project.parsing.CurrencyRateExtractor;
 
@@ -19,15 +19,16 @@ public class CurrencyRequestServiceImpl implements CurrencyRequestService {
     private String accessKey;
 
     private final CurrencyRateExtractor rateExtractor;
-    private final RestClientProvider restClient;
 
-    public CurrencyRequestServiceImpl(CurrencyRateExtractor rateExtractor, RestClientProvider restClient) {
+    private final RestClient restClient;
+
+    public CurrencyRequestServiceImpl(CurrencyRateExtractor rateExtractor, RestClient restClient) {
         this.rateExtractor = rateExtractor;
         this.restClient = restClient;
     }
 
     public Map<String, String> requestConversionFromSource(String from, String to, String amount) {
-        String rawData =  restClient.getRestClient().get()
+        String rawData =  restClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/convert")
                         .queryParam(ACCESS_KEY, accessKey)
@@ -40,7 +41,7 @@ public class CurrencyRequestServiceImpl implements CurrencyRequestService {
     }
 
     public Currency requestCurrencyFromSourse(String source) {
-        String responseBody = restClient.getRestClient().get()
+        String responseBody = restClient.get()
                 .uri(
                         uriBuilder -> uriBuilder
                                 .path("/live")
