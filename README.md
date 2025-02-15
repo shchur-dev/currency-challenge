@@ -7,7 +7,7 @@
 * Java 17
 
 ### Guides
-* clone the repo from []
+* clone this repo (to use SSH, run from cmd `git clone git@github.com:shchur-dev/currency-challenge.git`)
 * run `gradle build` from cmd (OR if using IntelliJ IDE run `build` from the IDE Gradle panel)
 * run either `./gradlew bootRun` from cmd, or `bootRun` from your IDE Gradle menu
 

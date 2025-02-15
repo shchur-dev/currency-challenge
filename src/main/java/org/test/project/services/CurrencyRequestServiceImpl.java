@@ -36,34 +36,20 @@ public class CurrencyRequestServiceImpl implements CurrencyRequestService {
                         .queryParam(AMOUNT_VALUE, amount)
                         .build())
                 .retrieve().body(String.class);
-        return rateExtractor.makeExchange(rawData);
+        return rateExtractor.prepareExchangeResult(rawData);
     }
 
     public Currency requestCurrencyFromSourse(String source) {
-//        String responseBody = restClient.getRestClient().get()
-//                .uri(
-//                        uriBuilder -> uriBuilder
-//                                .path("/live")
-//                                .queryParam("access_key", accessKey)
-//                                .queryParam("source", source)
-//                                .build()
-//                )
-//                .retrieve()
-//                .body(String.class);
-        String responseBody = "{\n" +
-                "    \"success\": true,\n" +
-                "    \"terms\": \"https://exchangerate.host/terms\",\n" +
-                "    \"privacy\": \"https://exchangerate.host/privacy\",\n" +
-                "    \"timestamp\": 1430068515,\n" +
-                "    \"source\": \"USD\",\n" +
-                "    \"quotes\": {\n" +
-                "        \"USDAUD\": 1.278384,\n" +
-                "        \"USDCHF\": 0.953975,\n" +
-                "        \"USDEUR\": 0.919677,\n" +
-                "        \"USDGBP\": 0.658443,\n" +
-                "        \"USDPLN\": 3.713873\n" +
-                "    }\n" +
-                "}";
+        String responseBody = restClient.getRestClient().get()
+                .uri(
+                        uriBuilder -> uriBuilder
+                                .path("/live")
+                                .queryParam("access_key", accessKey)
+                                .queryParam("source", source)
+                                .build()
+                )
+                .retrieve()
+                .body(String.class);
         return rateExtractor.parseCurrency(source, responseBody);
     }
 }

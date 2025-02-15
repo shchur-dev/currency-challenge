@@ -40,7 +40,7 @@ public class CurrencyRateExtractor {
         }
     }
 
-    public Map<String, String> makeExchange(String rawData) {
+    public Map<String, String> prepareExchangeResult(String rawData) {
         try {
             JsonNode root = mapper.readTree(rawData);
             JsonNode queryBody = root.path(QUERY_NODE);
