@@ -55,6 +55,7 @@ public class CurrencyOpsController {
         }
     }
 
+    @Cacheable(BASE_CACHE)
     @GetMapping("/rate")
     public Currency getExchangeRate(@PathParam(FROM_VALUE) String from, @PathParam(TO_VALUE) String to) {
 
