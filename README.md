@@ -30,4 +30,3 @@ Sample cURL's
 `curl --location --request PUT 'http://localhost:8080/rates?source=USD' \
 --header 'Content-Type: application/json' \
 --data '["AUD", "CHF"]'`
-
