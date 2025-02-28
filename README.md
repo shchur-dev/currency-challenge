@@ -1,4 +1,5 @@
 # To Start Currency Exchange and Conversion locally
+(please, insert your personal access_key to reach the host https://exchangerate.host, as I nearly reached my limit playing with app)
 
 ### Build tools
 * Gradle 7.3
